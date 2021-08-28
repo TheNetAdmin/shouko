@@ -55,7 +55,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Upload APK
-        if: "!startsWith(github.ref, 'refs/tags/') && github.repository == 'ivaniskandar/shouko' && github.event_name == 'push'"
+        if: "!startsWith(github.ref, 'refs/tags/') && github.event_name == 'push'"
         uses: actions/upload-artifact@v2
         with:
           name: shouko-canary
@@ -63,18 +63,18 @@ jobs:
 
       # Create new release
       - name: Get tag name
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ivaniskandar/shouko'
+        if: startsWith(github.ref, 'refs/tags/')
         id: get_tag_name
         run: |
           set -x
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Rename artifact
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ivaniskandar/shouko'
+        if: startsWith(github.ref, 'refs/tags/')
         run: cp ${{ env.SIGNED_RELEASE_FILE }} shouko-${{ env.VERSION_TAG }}.apk
 
       - name: Create Release
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ivaniskandar/shouko'
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.VERSION_TAG }}
