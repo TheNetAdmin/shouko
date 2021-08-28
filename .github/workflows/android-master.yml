@@ -44,7 +44,7 @@ jobs:
         run: bash ./gradlew spotlessCheck assembleRelease --stacktrace
 
       - name: Sign APK
-        if: github.repository == 'ivaniskandar/shouko' && github.event_name == 'push'
+        if: github.event_name == 'push'
         uses: r0adkll/sign-android-release@v1
         id: sign_app
         with:
