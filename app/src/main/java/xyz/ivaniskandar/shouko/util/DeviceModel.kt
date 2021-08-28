@@ -32,7 +32,7 @@ object DeviceModel {
         "XQ-BT52"
     ).contains(Build.MODEL)
 
-    // From https://github.com/ivaniskandar/shouko/pull/13
+    // From: https://github.com/ivaniskandar/shouko/pull/13
     // With additional Xperia 1 III model "XQ-BC62"
     // Xperia 1 III
     val isPDX215 = arrayOf(
